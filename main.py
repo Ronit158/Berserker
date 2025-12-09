@@ -9,9 +9,9 @@ intents.message_content = True
 intents.members = True
 
 papa_replies = [
-    "Papa is busy fixing the universe 🌌, wait for him to finish!",
-    "Papa is busy Doing stuff, he'll get back to you soon! 🐶",
-    "Papa will reply soon, have patience 🙏",
+    "Papa is busy fixing the universe , wait for him to finish!",
+    "Papa is busy Doing stuff, he'll get back to you soon! ",
+    "Papa will reply soon, have patience ",
 ]
 LOG_CHANNEL_ID = 1447991240435175637
 # ...existing code...
@@ -82,18 +82,18 @@ class Client(discord.Client):
                         await member.edit(nick=None)
                     except:
                         pass
-                await message.channel.send("✅ All nicknames have been reset!")
+                await message.channel.send("All nicknames have been reset!")
             else:
-                await message.channel.send("❌ You need **Admin** permissions to use this command.")
+                await message.channel.send("You need **Admin** permissions to use this command.")
 
         if content.startswith("+nick"):
             if not message.author.guild_permissions.administrator:
-                await message.channel.send("❌ Only **admins** can use this command.")
+                await message.channel.send("Only **admins** can use this command.")
                 return
 
             parts = content.split(" ", 2)
             if len(parts) < 3 or not message.mentions:
-                await message.channel.send("❌ Usage: `+nick @user newnickname`")
+                await message.channel.send("Usage: `+nick @user newnickname`")
                 return
 
             target_user = message.mentions[0]
@@ -101,9 +101,9 @@ class Client(discord.Client):
 
             try:
                 await target_user.edit(nick=new_nick)
-                await message.channel.send(f"✅ Nickname changed for {target_user.mention} to **{new_nick}**!")
+                await message.channel.send(f"Nickname changed for {target_user.mention} to **{new_nick}**!")
             except:
-                await message.channel.send("⚠️ I don't have permission to change that user's nickname.")
+                await message.channel.send("I don't have permission to change that user's nickname.")
 
         if content.startswith("+unnick"):
             if not message.author.guild_permissions.administrator:
@@ -118,9 +118,9 @@ class Client(discord.Client):
 
             try:
                 await target_user.edit(nick=None)
-                await message.channel.send(f"✅ Nickname cleared for {target_user.mention}!")
+                await message.channel.send(f"Nickname cleared for {target_user.mention}!")
             except:
-                await message.channel.send("⚠️ I don't have permission to remove that user's nickname.")
+                await message.channel.send("I don't have permission to remove that user's nickname.")
 
         if content.startswith("+help"):
             help_message = (
@@ -134,21 +134,22 @@ class Client(discord.Client):
 
         if content.startswith("+purge"):
             if not message.author.guild_permissions.administrator:
-                await message.channel.send("❌ Only admins can use this command.")
+                await message.channel.send("Only admins can use this command.")
                 return
 
             parts = content.split(" ")
             if len(parts) != 2 or not parts[1].isdigit():
-                await message.channel.send("❌ Usage: +purge <number_of_messages>")
+                await message.channel.send("Usage: +purge <number_of_messages>")
                 return
 
             count = int(parts[1])
             deleted = await message.channel.purge(limit=count + 1)
-            await message.channel.send(f"✅ Deleted {len(deleted)-1} messages!", delete_after=5)
+            await message.channel.send(f"Deleted {len(deleted)-1} messages!", delete_after=5)
 
 
 
 
 client = Client(intents=intents)
 client.run(os.environ['DISCORD_TOKEN'])
+
 
