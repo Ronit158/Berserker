@@ -10,7 +10,7 @@ import json
 
 app = Flask('')
 
-
+#AI chat router
 @app.route('/')
 def home():
     return "Bot is running!"
@@ -674,3 +674,4 @@ class Client(discord.Client):
 keep_alive()
 client = Client(intents=intents)
 client.run(os.environ['DISCORD_TOKEN'])
+
