@@ -514,6 +514,7 @@ class Client(discord.Client):
                 f"✅ Message sent to {target_channel.mention}!")
 
         # Giveaway System
+        #if content.startswith("poll"):
         if content.startswith("+gstart"):
             if not message.author.guild_permissions.administrator:
                 await message.channel.send(
@@ -674,4 +675,5 @@ class Client(discord.Client):
 keep_alive()
 client = Client(intents=intents)
 client.run(os.environ['DISCORD_TOKEN'])
+
 
